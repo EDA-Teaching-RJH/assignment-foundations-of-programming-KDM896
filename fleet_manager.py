@@ -3,7 +3,7 @@ def init_database():
     Names = ["Kirk", "Troi", "Mccoy", "Sulu", "Harry"]
     Ranks = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Ensign"]
     Divs = ["Command", "Councillor", "Medical", "Command", "Operations"]
-    Ids = ["0","1","2","3"] #Making all the lists of the characters
+    Ids = ["0","1","2","3"] #Making all the lists of the characters, ranks, divs and Ids
     return Names, Ranks, Divs, Ids
 
 def display_menu():
@@ -27,27 +27,39 @@ def add_member():
     name = input("What is their name? ")
     rank = input("What is their rank? ")
     div = input("What is their division? ")
-    id = input("What is their ID? ")
-    Names.append(name)
-    Ranks.append(rank)
-    Divs.append(div)
-    Ids.append(id)
+    while True:
+        try:
+            id = int(input("What is their ID? "))
+            if id > 0:
+                if id > int(Ids[-1]):
+                    Ids.append(str(id))
+                    Ranks.append(rank)
+                    Names.append(name)
+                    Divs.append(div)
+                    break
+                elif int(Ids[-2]) < id < int(Ids[-1]):
+                    Ids.append(str(id))
+                    Ranks.append(rank)
+                    Names.append(name)
+                    Divs.append(div)
+                    break
+                else:
+                    print("Invalid ID")
+                    continue
+        except:
+            print("Invalid")
+            continue
 
-
-
+             
 
 def main():
     init_database()
     opt = display_menu()
-    if opt == 1:
+    if opt == "1":
         add_member()
+
+    print(Names)
+    print(Ranks)
+    print(Divs)
+    print(Ids)
 main()
-
-
-#ValidID = False
-    #while not ValidID:
-        #for num in Ids:
-            #if id == num:
-                #ValidID = False
-            #else:
-                #ValidID = True
