@@ -7,23 +7,23 @@ def init_database():
     return Names, Ranks, Divs, Ids
 
 def display_menu():
-    name = input("What is your full name? ") # Get users full name
+    name = input("What is your full name? ") # Get users full name to define whos logged in
     print("=================================")
-    print("Add Members : 1")
-    print("Remove Members : 2")
-    print("Update Rank : 3")
-    print("Display Roster : 4")
+    print("Add crew Members : 1")
+    print("Remove crew Members : 2")
+    print("Update crew Rank : 3")
+    print("Display crew Roster : 4")
     print("Search Crew : 5")
     print("Filter By Division : 6")
     print("Calculate Payroll : 7")
     print("Count Officers : 8")
-    print("===========================================")
-    print(f"{name} is currently logged in")
-    print("===========================================")
+    print("----------------------------------------------")
+    print(f"{name} is the current user logged in")
+    print("----------------------------------------------")
     choice = input("What option do you want to select? ")
     return choice
 
-def add_member():
+def add_member():#asking for required information then amending the existing lists with new info
     name = input("What is their name? ")
     rank = input("What is their rank? ")
     div = input("What is their division? ")
@@ -50,16 +50,25 @@ def add_member():
             print("Invalid")
             continue
 
-             
+def remove_member():# removing a member from the list by using stored IDs then deleting all information related.
+    id = input("What is the ID of the member you want to remove? ")
+    if id in Ids:
+        index = Ids.index(id)
+        del Ids[index]
+        del Ranks[index]
+        del Names[index]
+        del Divs[index]
+    else:
+        print("ID not found")         
 
 def main():
     init_database()
     opt = display_menu()
     if opt == "1":
         add_member()
+    elif opt == "2":
+        remove_member()
 
-    print(Names)
-    print(Ranks)
-    print(Divs)
-    print(Ids)
+
 main()
+
