@@ -70,11 +70,22 @@ def update_rank():
         Ranks[index] = new_rank
     else:        print("invalid rank try again")
 
+def display_roster(names, ranks, divs, ids):
+    for i in range(len(names)):
+        print(f"Name: {names[i]}, Rank: {ranks[i]}, Division: {divs[i]}, ID: {ids[i]}")
+
+def search_crew():
+    search_crew = input("What is the name of the crew member you want to search for? ")
+    if search_crew in Names:
+        index = Names.index(search_crew)
+        print(f"Name: {Names[index]}, Rank: {Ranks[index]}, Division: {Divs[index]}, ID: {Ids[index]}")
+    else:        print("Crew member does not exist.")
 
 
 def main():
     init_database()
     opt = display_menu()
+   
     while True:
         if opt == "1":
             add_member()
@@ -83,12 +94,17 @@ def main():
         elif opt == "3":
             update_rank()
         elif opt == "4":
-            display_roster()
+            display_roster(Names, Ranks, Divs, Ids)
+        elif opt == "5":
+                search_crew()
+        elif opt == "6":
+                filter_division()
+        elif opt == "7":                
+            calculate_payroll()
+        elif opt == "8":
+            count_officers()
         opt = display_menu()
     
         
-
-
-
 main()
 
