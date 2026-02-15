@@ -7,8 +7,8 @@ def init_database():
     return Names, Ranks, Divs, Ids
 
 def display_menu():
-    name = input("What is your full name? ") # Get users full name to define whos logged in
-    print("=================================")
+    name = input("What is your full name? ") # Get users full name to define whos logged in (repeats)
+    print("----------------------------------------------")
     print("Add crew Members : 1")
     print("Remove crew Members : 2")
     print("Update crew Rank : 3")
@@ -59,15 +59,35 @@ def remove_member():# removing a member from the list by using stored IDs then d
         del Names[index]
         del Divs[index]
     else:
-        print("ID not found")         
+        print("invalid ID try again")         
+
+def update_rank():
+    Id = input("what is the ID of the member you want to update? ")
+    if Id in Ids:
+        index = Ids.index(Id)
+        new_rank = input("what is the rank you want to change to: Captain, Commander, Lieutenant Commander, Lieutenant and Ensign?")
+    if new_rank in Ranks: 
+        Ranks[index] = new_rank
+    else:        print("invalid rank try again")
+
+
 
 def main():
     init_database()
     opt = display_menu()
-    if opt == "1":
-        add_member()
-    elif opt == "2":
-        remove_member()
+    while True:
+        if opt == "1":
+            add_member()
+        elif opt == "2":
+            remove_member()
+        elif opt == "3":
+            update_rank()
+        elif opt == "4":
+            display_roster()
+        opt = display_menu()
+    
+        
+
 
 
 main()
