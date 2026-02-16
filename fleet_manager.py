@@ -85,6 +85,11 @@ def search_crew():
         print(f"Name: {Names[index]}, Rank: {Ranks[index]}, Division: {Divs[index]}, ID: {Ids[index]}")
     else:        print("Crew member does not exist.")
 
+def filter_division():
+    filter_division = input("What division do you want to filter by? ")
+    for i in range(len(Divs)):
+        if Divs[i] == filter_division:
+            print(f"Name: {Names[i]}, Rank: {Ranks[i]}, Division: {Divs[i]}, ID: {Ids[i]}")
 
 def main():
     init_database()
