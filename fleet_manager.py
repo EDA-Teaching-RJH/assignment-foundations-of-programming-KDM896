@@ -78,7 +78,12 @@ def display_roster(Names, Ranks, Divs, Ids):
     for i in range(len(Names)):
         print(f"Name: {Names[i]}, Rank: {Ranks[i]}, Division: {Divs[i]}, ID: {Ids[i]}")
         
-
+def search_crew():
+    search_crew = input("What is the name of the crew member you want to search for? ")
+    if search_crew in Names:
+        index = Names.index(search_crew)
+        print(f"Name: {Names[index]}, Rank: {Ranks[index]}, Division: {Divs[index]}, ID: {Ids[index]}")
+    else:        print("Crew member does not exist.")
 
 
 def main():
