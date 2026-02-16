@@ -1,7 +1,7 @@
 n = ["Picard", "Riker", "Data", "Worf"]
 r = ["Captain", "Commander", "Lt. Commander", "Lieutenant"]
 d = ["Command", "Command", "Operations", "Security"]
-# using parallel lists to store crew information, where n is names, r is ranks, and d is divisions can cause problems with consistency becasue when ading and removing information you have to make sure to add and remove from all three lists to keep the information aligned. if you forget to add or remove from one of the lists it can cause the information to become imbalanced and inaccurate when trying to view crew information. my code stops this problem by specifying the index of the crew member being added or removed and making sure to add or remove from all three lists and appending the new information accordingly to changes made.
+
 active = True
 
 def run_system_monolith():
@@ -13,7 +13,6 @@ def run_system_monolith():
     loading = 0
     while loading < 5:
         print("Loading module " + str(loading))
-        loading += 1 # bug fix 3- added loading += 1 so that it isnt an infinite loop because the value would have never increased to 5 to break the loop.
         
     
     while True:
@@ -26,10 +25,10 @@ def run_system_monolith():
         
         opt = input("Select option: ")
         
-        if opt == "1":  #bug fix 1 - changed = to == becasue it was an assignment instead of a comparison. need to be comparison to see if the option is 1 being input by the user
+        if opt = "1":  
             print("Current Crew List:")
             
-            for i in range(len(n)):#bug fix 4- i changed the rage of the loop to be related to the length of the list so that any crew member can be added and included in the printed list instead of it being bound to 4 
+            for i in range(10):
                 print(n[i] + " - " + r[i]) 
                 
         elif opt == "2":
@@ -39,8 +38,6 @@ def run_system_monolith():
             
            
             n.append(new_name)
-            r.append(new_rank)
-            d.append(new_div)#bug fix 5- added more appends so that when a new crew member is added all relevant information like rank and division is added to the lists so you can get the full information when you view crew.
             print("Crew member added.")
             
         elif opt == "3":
@@ -55,15 +52,11 @@ def run_system_monolith():
         elif opt == "4":
             print("Analyzing...")
             count = 0
-
+            
             for rank in r:
-                if rank == "Captain":#bug fix 10- changed if statement to check captain then commander indavidulally so it would give an accurate count of both ranks.
+                if rank == "Captain" or "Commander": 
                     count = count + 1
-                elif rank == "Commander":# bug fix 8- added an elif statement to check and count for commander rank as well so that it will count both ranks instead of just captain which was the only one being counted before becasue the if and or statement was stopping after checking for the captain only.
-                    count += 1#buf fix 9- added count += 1 to seperatly check and count the commander rank.
-                else:
-                    count=count#bug fix 7- added count = count to the else statement so that if the rank is not captain or commander it will change the correct count and or rest back to zero after the ranks have been added.
-            print(f"High ranking officers: {count}") #bug fix 6- alowing the count to be printed removing the inifinite loop by adding a f string which allows to count and print.
+            print("High ranking officers: " + count) 
             
         elif opt == "5":
             print("Shutting down.")
@@ -94,5 +87,3 @@ def run_system_monolith():
             break 
             
         print("End of cycle.")
-
-run_system_monolith() #bug fix 2- added brackets to allow the function to run as it calls it to excute instead of being referanced.
