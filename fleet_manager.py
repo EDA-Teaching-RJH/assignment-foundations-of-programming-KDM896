@@ -3,7 +3,7 @@ def init_database():
     Names = ["Kirk", "Troi", "Mccoy", "Sulu", "Harry"]
     Ranks = ["Ensign","Lieutenant","Lieutenant Commander","Commander","Captain"]
     Divs = ["Command", "Councillor", "Medical", "Command", "Operations"]
-    Ids = ["0","1","2","3"] #Making all the lists of the characters, ranks, divs and Ids
+    Ids = ["0","1","2","3","4"] #Making all the lists of the characters, ranks, divs and Ids
     return Names, Ranks, Divs, Ids
 
 def display_menu():
@@ -23,9 +23,15 @@ def display_menu():
     choice = input("What option do you want to select? ")
     return choice
 
-def add_member():#asking for required information then amending the existing lists with new info
+def add_member():
     name = input("What is their name? ")
-    rank = input("What is their rank? ")
+    Rank_list = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Ensign"]
+    while True:
+        rank = input("What is their rank? ")
+        if rank in Rank_list:
+            break
+        else:
+            print("Invalid rank try again")
     div = input("What is their division? ")
     while True:
         try:
@@ -39,7 +45,6 @@ def add_member():#asking for required information then amending the existing lis
                     break
                 elif rank not in Ranks:
                     print("Invalid rank try again")
-                    break
                     continue
                 elif int(Ids[-2]) < id < int(Ids[-1]):
                     Ids.append(str(id))
@@ -66,15 +71,18 @@ def remove_member():# removing a member from the list by using stored IDs then d
         print("invalid ID try again")         
 
 def update_rank():
+    valid_ranks = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Ensign"]
     Id = input("what is the ID of the member you want to update? ")
     if Id in Ids:
         index = Ids.index(Id)
         new_rank = input("what is the rank you want to change to: Captain, Commander, Lieutenant Commander, Lieutenant and Ensign?")
-    if new_rank in Ranks: 
+    if new_rank in valid_ranks: 
         Ranks[index] = new_rank
-    else:        print("invalid rank try again")
+    else:        
+        print("invalid rank try again")
 
-def display_roster(Names, Ranks, Divs, Ids):
+def display_roster():
+    print("Crew Roster:")
     for i in range(len(Names)):
         print(f"Name: {Names[i]}, Rank: {Ranks[i]}, Division: {Divs[i]}, ID: {Ids[i]}")
         
@@ -116,7 +124,7 @@ def count_officers():
 def main():
     init_database()
     opt = display_menu()
-   
+    valid_ranks = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Ensign"]
     while True:
         if opt == "1":
             add_member()
@@ -125,7 +133,7 @@ def main():
         elif opt == "3":
             update_rank()
         elif opt == "4":
-            display_roster(Names, Ranks, Divs, Ids)
+            display_roster()
         elif opt == "5":
                 search_crew()
         elif opt == "6":
