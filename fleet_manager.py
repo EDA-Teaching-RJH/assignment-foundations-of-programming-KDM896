@@ -1,7 +1,7 @@
 def init_database(): 
     global Names,Ranks,Divs,Ids
     Names = ["Kirk", "Troi", "Mccoy", "Sulu", "Harry"]
-    Ranks = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Ensign"]
+    Ranks = ["Ensign","Lieutenant","Lieutenant Commander","Commander","Captain"]
     Divs = ["Command", "Councillor", "Medical", "Command", "Operations"]
     Ids = ["0","1","2","3"] #Making all the lists of the characters, ranks, divs and Ids
     return Names, Ranks, Divs, Ids
@@ -37,6 +37,10 @@ def add_member():#asking for required information then amending the existing lis
                     Names.append(name)
                     Divs.append(div)
                     break
+                elif rank not in Ranks:
+                    print("Invalid rank try again")
+                    break
+                    continue
                 elif int(Ids[-2]) < id < int(Ids[-1]):
                     Ids.append(str(id))
                     Ranks.append(rank)
@@ -70,16 +74,7 @@ def update_rank():
         Ranks[index] = new_rank
     else:        print("invalid rank try again")
 
-def display_roster(names, ranks, divs, ids):
-    for i in range(len(names)):
-        print(f"Name: {names[i]}, Rank: {ranks[i]}, Division: {divs[i]}, ID: {ids[i]}")
 
-def search_crew():
-    search_crew = input("What is the name of the crew member you want to search for? ")
-    if search_crew in Names:
-        index = Names.index(search_crew)
-        print(f"Name: {Names[index]}, Rank: {Ranks[index]}, Division: {Divs[index]}, ID: {Ids[index]}")
-    else:        print("Crew member does not exist.")
 
 
 def main():
