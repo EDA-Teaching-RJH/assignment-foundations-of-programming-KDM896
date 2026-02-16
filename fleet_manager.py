@@ -74,6 +74,10 @@ def update_rank():
         Ranks[index] = new_rank
     else:        print("invalid rank try again")
 
+def display_roster(Names, Ranks, Divs, Ids):
+    for i in range(len(Names)):
+        print(f"Name: {Names[i]}, Rank: {Ranks[i]}, Division: {Divs[i]}, ID: {Ids[i]}")
+        
 
 
 
