@@ -1,7 +1,7 @@
 n = ["Picard", "Riker", "Data", "Worf"]
 r = ["Captain", "Commander", "Lt. Commander", "Lieutenant"]
 d = ["Command", "Command", "Operations", "Security"]
-
+# using parallel lists to store crew information, where n is names, r is ranks, and d is divisions can cause problems with consistency becasue when ading and removing information you have to make sure to add and remove from all three lists to keep the information aligned. if you forget to add or remove from one of the lists it can cause the information to become imbalanced and inaccurate when trying to view crew information. my code stops this problem by specifying the index of the crew member being added or removed and making sure to add or remove from all three lists and appending the new information accordingly to changes made.
 active = True
 
 def run_system_monolith():
